@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -442,34 +442,6 @@ const NewsCard = ({
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (NewsCard);
-
-/***/ }),
-
-/***/ "./helper/index.js":
-/*!*************************!*\
-  !*** ./helper/index.js ***!
-  \*************************/
-/*! exports provided: query, client */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "query", function() { return query; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "client", function() { return client; });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-const apiKey = "198b33dbfde64f7081c5ecf1d1d6f6f7";
-const allowCors = 'https://cors-anywhere.herokuapp.com/';
-const baseURL = `http://newsapi.org/v2/`;
-
-const query = (countryId, category) => `top-headlines?country=${countryId}&category=${category}&apiKey=${apiKey}`;
-
-const client = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
-  baseURL,
-  timeout: 10000
-});
-
 
 /***/ }),
 
@@ -2159,11 +2131,12 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helper */ "./helper/index.js");
-/* harmony import */ var _comps_layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../comps/layout */ "./comps/layout.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "react-bootstrap");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _comps_newsCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../comps/newsCard */ "./comps/newsCard.js");
+/* harmony import */ var _comps_layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../comps/layout */ "./comps/layout.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "react-bootstrap");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _comps_newsCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../comps/newsCard */ "./comps/newsCard.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_4__);
 var _jsxFileName = "/home/mazda94/Documents/JavaScript/React & React Native/React/NextJS/DelegateTest/pages/tech.jsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
@@ -2172,264 +2145,180 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-const Page = ({
-  data,
-  error
-}) => {
-  if (error) {
-    return __jsx(_comps_layout__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      __self: undefined,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 14,
-        columnNumber: 13
-      }
-    }, __jsx("p", {
-      __self: undefined,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 15,
-        columnNumber: 17
-      }
-    }, "Error while load data"));
-  }
-
-  return __jsx(_comps_layout__WEBPACK_IMPORTED_MODULE_2__["default"], {
+const Page = () => {
+  const {
+    technologies
+  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["useSelector"])(state => state);
+  return __jsx(_comps_layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21,
+      lineNumber: 15,
       columnNumber: 9
     }
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Container, {
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Tab"].Container, {
     id: "left-tabs-example",
     defaultActiveKey: "idn",
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22,
+      lineNumber: 16,
       columnNumber: 13
     }
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Row"], {
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Row"], {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25,
+      lineNumber: 19,
       columnNumber: 17
     }
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Col"], {
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"], {
     xs: 12,
     md: 4,
     xl: 3,
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26,
+      lineNumber: 20,
       columnNumber: 21
     }
   }, __jsx("h3", {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28,
+      lineNumber: 22,
       columnNumber: 25
     }
-  }, "Country"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"], {
+  }, "Country"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"], {
     variant: "pills",
     className: "flex-column",
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29,
+      lineNumber: 23,
       columnNumber: 25
     }
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Item, {
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"].Item, {
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 26,
+      columnNumber: 29
+    }
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"].Link, {
+    eventKey: "idn",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 27,
+      columnNumber: 33
+    }
+  }, "Indonesia")), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"].Item, {
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 29,
+      columnNumber: 29
+    }
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"].Link, {
+    eventKey: "sg",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30,
+      columnNumber: 33
+    }
+  }, "Singapore")), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"].Item, {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 32,
       columnNumber: 29
     }
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Link, {
-    eventKey: "idn",
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"].Link, {
+    eventKey: "us",
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 33,
       columnNumber: 33
     }
-  }, "Indonesia")), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Item, {
-    __self: undefined,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 35,
-      columnNumber: 29
-    }
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Link, {
-    eventKey: "sg",
-    __self: undefined,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 36,
-      columnNumber: 33
-    }
-  }, "Singapore")), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Item, {
-    __self: undefined,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 38,
-      columnNumber: 29
-    }
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Link, {
-    eventKey: "us",
-    __self: undefined,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 39,
-      columnNumber: 33
-    }
-  }, "United States")))), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Col"], {
+  }, "United States")))), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"], {
     xs: 12,
     md: 8,
     xl: 9,
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 43,
+      lineNumber: 37,
       columnNumber: 21
     }
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Content, {
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Tab"].Content, {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 44,
+      lineNumber: 38,
       columnNumber: 25
     }
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Pane, {
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Tab"].Pane, {
     eventKey: "idn",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 39,
+      columnNumber: 29
+    }
+  }, __jsx(_comps_newsCard__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    title: "Indonesia Tech",
+    news: technologies[0].idnTech,
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 40,
+      columnNumber: 33
+    }
+  })), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Tab"].Pane, {
+    eventKey: "sg",
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 45,
       columnNumber: 29
     }
-  }, __jsx(_comps_newsCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    title: "Indonesia Tech",
-    news: data[0].idnTech,
+  }, __jsx(_comps_newsCard__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    title: "Singapore Tech",
+    news: technologies[1].sgTech,
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 46,
       columnNumber: 33
     }
-  })), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Pane, {
-    eventKey: "sg",
+  })), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Tab"].Pane, {
+    eventKey: "us",
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 51,
       columnNumber: 29
     }
-  }, __jsx(_comps_newsCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    title: "Singapore Tech",
-    news: data[1].sgTech,
+  }, __jsx(_comps_newsCard__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    news: technologies[2].usTech,
+    title: "United States Tech",
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 52,
       columnNumber: 33
     }
-  })), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Pane, {
-    eventKey: "us",
-    __self: undefined,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 57,
-      columnNumber: 29
-    }
-  }, __jsx(_comps_newsCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    news: data[2].usTech,
-    title: "United States Tech",
-    __self: undefined,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 58,
-      columnNumber: 33
-    }
   })))))));
-};
-
-Page.getInitialProps = async ({
-  store
-}) => {
-  const {
-    technologies
-  } = store.getState();
-
-  if (technologies.length) {
-    return {
-      data: technologies
-    };
-  } else {
-    try {
-      const businessPromises = {
-        idnBusiness: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('id', 'business')),
-        sgBusiness: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('sg', 'business')),
-        usBusiness: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('us', 'business'))
-      };
-      const {
-        idnBusiness,
-        sgBusiness,
-        usBusiness
-      } = businessPromises;
-      const businessPayload = [{
-        idnBusiness: idnBusiness.data.articles.slice(0, 8)
-      }, {
-        sgBusiness: sgBusiness.data.articles.slice(0, 8)
-      }, {
-        usBusiness: usBusiness.data.articles.slice(0, 8)
-      }];
-      store.dispatch({
-        type: 'SET_BUSINESS',
-        payload: businessPayload
-      });
-      const techPromises = {
-        idnTech: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('id', 'technology')),
-        sgTech: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('sg', 'technology')),
-        usTech: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('us', 'technology'))
-      };
-      const {
-        idnTech,
-        sgTech,
-        usTech
-      } = techPromises;
-      const techPayload = [{
-        idnTech: idnTech.data.articles.slice(0, 8)
-      }, {
-        sgTech: sgTech.data.articles.slice(0, 8)
-      }, {
-        usTech: usTech.data.articles.slice(0, 8)
-      }];
-      store.dispatch({
-        type: 'SET_TECHNOLOGIES',
-        payload: techPayload
-      });
-      return {
-        data: payload
-      };
-    } catch (error) {
-      return {
-        error: error.message
-      };
-    }
-  }
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Page);
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /*!******************************!*\
   !*** multi ./pages/tech.jsx ***!
   \******************************/
@@ -2438,17 +2327,6 @@ Page.getInitialProps = async ({
 
 module.exports = __webpack_require__(/*! /home/mazda94/Documents/JavaScript/React & React Native/React/NextJS/DelegateTest/pages/tech.jsx */"./pages/tech.jsx");
 
-
-/***/ }),
-
-/***/ "axios":
-/*!************************!*\
-  !*** external "axios" ***!
-  \************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("axios");
 
 /***/ }),
 
@@ -2526,6 +2404,17 @@ module.exports = require("react-bootstrap");
 /***/ (function(module, exports) {
 
 module.exports = require("react-is");
+
+/***/ }),
+
+/***/ "react-redux":
+/*!******************************!*\
+  !*** external "react-redux" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux");
 
 /***/ }),
 

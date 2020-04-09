@@ -527,6 +527,9 @@ const intialState = {
 };
 
 const reducer = (state = intialState, action) => {
+  console.log('Masuk redux');
+  console.log(action);
+
   switch (action.type) {
     case "SET_BUSINESS":
       return _objectSpread({}, state, {

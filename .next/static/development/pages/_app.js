@@ -8260,6 +8260,8 @@ var intialState = {
 var reducer = function reducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : intialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  console.log('Masuk redux');
+  console.log(action);
 
   switch (action.type) {
     case "SET_BUSINESS":

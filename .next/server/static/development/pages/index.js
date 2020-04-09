@@ -2164,9 +2164,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "react-bootstrap");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _comps_newsCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../comps/newsCard */ "./comps/newsCard.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_5__);
 var _jsxFileName = "/home/mazda94/Documents/JavaScript/React & React Native/React/NextJS/DelegateTest/pages/index.jsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
 
 
 
@@ -2176,19 +2180,36 @@ const Page = ({
   data,
   error
 }) => {
+  const {
+    business
+  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["useSelector"])(state => state);
+  const dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["useDispatch"])();
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    if (business.length === 0) {
+      dispatch({
+        type: 'SET_BUSINESS',
+        payload: data.business
+      });
+      dispatch({
+        type: 'SET_TECHNOLOGIES',
+        payload: data.tech
+      });
+    }
+  }, []);
+
   if (error) {
     return __jsx(_comps_layout__WEBPACK_IMPORTED_MODULE_2__["default"], {
       __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 14,
+        lineNumber: 26,
         columnNumber: 13
       }
     }, __jsx("p", {
       __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 15,
+        lineNumber: 27,
         columnNumber: 17
       }
     }, "Error while load data"));
@@ -2198,7 +2219,7 @@ const Page = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21,
+      lineNumber: 33,
       columnNumber: 9
     }
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Container, {
@@ -2207,14 +2228,14 @@ const Page = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22,
+      lineNumber: 34,
       columnNumber: 13
     }
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Row"], {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25,
+      lineNumber: 37,
       columnNumber: 17
     }
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Col"], {
@@ -2224,14 +2245,14 @@ const Page = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26,
+      lineNumber: 38,
       columnNumber: 21
     }
   }, __jsx("h3", {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28,
+      lineNumber: 40,
       columnNumber: 25
     }
   }, "Country"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"], {
@@ -2240,14 +2261,14 @@ const Page = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29,
+      lineNumber: 41,
       columnNumber: 25
     }
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Item, {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32,
+      lineNumber: 44,
       columnNumber: 29
     }
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Link, {
@@ -2255,14 +2276,14 @@ const Page = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 33,
+      lineNumber: 45,
       columnNumber: 33
     }
   }, "Indonesia")), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Item, {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 35,
+      lineNumber: 47,
       columnNumber: 29
     }
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Link, {
@@ -2270,14 +2291,14 @@ const Page = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 36,
+      lineNumber: 48,
       columnNumber: 33
     }
   }, "Singapore")), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Item, {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 38,
+      lineNumber: 50,
       columnNumber: 29
     }
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Link, {
@@ -2285,7 +2306,7 @@ const Page = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 39,
+      lineNumber: 51,
       columnNumber: 33
     }
   }, "United States")))), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Col"], {
@@ -2295,14 +2316,14 @@ const Page = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 43,
+      lineNumber: 55,
       columnNumber: 21
     }
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Content, {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 44,
+      lineNumber: 56,
       columnNumber: 25
     }
   }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Pane, {
@@ -2310,17 +2331,17 @@ const Page = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 45,
+      lineNumber: 57,
       columnNumber: 29
     }
   }, __jsx(_comps_newsCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
     id: 'idnBusiness',
     title: "Indonesia Business",
-    news: data[0].idnBusiness,
+    news: business.length > 0 ? business[0].idnBusiness : data.business[0].idnBusiness,
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 46,
+      lineNumber: 58,
       columnNumber: 33
     }
   })), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Pane, {
@@ -2328,17 +2349,17 @@ const Page = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 52,
+      lineNumber: 64,
       columnNumber: 29
     }
   }, __jsx(_comps_newsCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
     title: "Singapore Business",
-    news: data[1].sgBusiness,
+    news: business.length > 0 ? business[1].sgBusiness : data.business[1].sgBusiness,
     id: 'sgBusiness',
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 53,
+      lineNumber: 65,
       columnNumber: 33
     }
   })), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Pane, {
@@ -2346,17 +2367,17 @@ const Page = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 59,
+      lineNumber: 71,
       columnNumber: 29
     }
   }, __jsx(_comps_newsCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
     id: 'usBusiness',
-    news: data[2].usBusiness,
+    news: business.length > 0 ? business[2].usBusiness : data.business[2].usBusiness,
     title: "United States Business",
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 60,
+      lineNumber: 72,
       columnNumber: 33
     }
   })))))));
@@ -2368,63 +2389,49 @@ Page.getInitialProps = async ({
   const {
     business
   } = store.getState();
+  if (business.length > 0) return {};
 
-  if (business.length) {
-    return {
-      data: business
+  try {
+    const promises = {
+      idnBusiness: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('id', 'business')),
+      sgBusiness: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('sg', 'business')),
+      usBusiness: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('us', 'business')),
+      idnTech: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('id', 'technology')),
+      sgTech: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('sg', 'technology')),
+      usTech: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('us', 'technology'))
     };
-  } else {
-    try {
-      const businessPromises = {
-        idnBusiness: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('id', 'business')),
-        sgBusiness: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('sg', 'business')),
-        usBusiness: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('us', 'business'))
-      };
-      const {
-        idnBusiness,
-        sgBusiness,
-        usBusiness
-      } = businessPromises;
-      const businessPayload = [{
-        idnBusiness: idnBusiness.data.articles.slice(0, 8)
-      }, {
-        sgBusiness: sgBusiness.data.articles.slice(0, 8)
-      }, {
-        usBusiness: usBusiness.data.articles.slice(0, 8)
-      }];
-      store.dispatch({
-        type: 'SET_BUSINESS',
-        payload: businessPayload
-      });
-      const techPromises = {
-        idnTech: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('id', 'technology')),
-        sgTech: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('sg', 'technology')),
-        usTech: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('us', 'technology'))
-      };
-      const {
-        idnTech,
-        sgTech,
-        usTech
-      } = techPromises;
-      const techPayload = [{
-        idnTech: idnTech.data.articles.slice(0, 8)
-      }, {
-        sgTech: sgTech.data.articles.slice(0, 8)
-      }, {
-        usTech: usTech.data.articles.slice(0, 8)
-      }];
-      store.dispatch({
-        type: 'SET_TECHNOLOGIES',
-        payload: techPayload
-      });
-      return {
-        data: payload
-      };
-    } catch (error) {
-      return {
-        error: error.message
-      };
-    }
+    const {
+      idnBusiness,
+      sgBusiness,
+      usBusiness,
+      idnTech,
+      sgTech,
+      usTech
+    } = promises;
+    const business = [{
+      idnBusiness: idnBusiness.data.articles.slice(0, 8)
+    }, {
+      sgBusiness: sgBusiness.data.articles.slice(0, 8)
+    }, {
+      usBusiness: usBusiness.data.articles.slice(0, 8)
+    }];
+    const tech = [{
+      idnTech: idnTech.data.articles.slice(0, 8)
+    }, {
+      sgTech: sgTech.data.articles.slice(0, 8)
+    }, {
+      usTech: usTech.data.articles.slice(0, 8)
+    }];
+    return {
+      data: {
+        business,
+        tech
+      }
+    };
+  } catch (error) {
+    return {
+      error: error.message
+    };
   }
 };
 
@@ -2529,6 +2536,17 @@ module.exports = require("react-bootstrap");
 /***/ (function(module, exports) {
 
 module.exports = require("react-is");
+
+/***/ }),
+
+/***/ "react-redux":
+/*!******************************!*\
+  !*** external "react-redux" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux");
 
 /***/ }),
 

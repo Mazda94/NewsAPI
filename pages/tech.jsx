@@ -1,4 +1,3 @@
-import { client, query } from '../helper'
 import Layout from '../comps/layout'
 import {
     Row,
@@ -7,15 +6,10 @@ import {
     Tab
 } from 'react-bootstrap'
 import NewsCard from '../comps/newsCard'
+import { useSelector } from 'react-redux'
 
-const Page = ({ data, error }) => {
-    if (error) {
-        return (
-            <Layout>
-                <p>Error while load data</p>
-            </Layout>
-        )
-    }
+const Page = () => {
+    const { technologies } = useSelector(state => state)
 
     return (
         <Layout>
@@ -45,18 +39,18 @@ const Page = ({ data, error }) => {
                             <Tab.Pane eventKey="idn">
                                 <NewsCard
                                     title="Indonesia Tech"
-                                    news={data[0].idnTech}
+                                    news={technologies[0].idnTech}
                                 />
                             </Tab.Pane>
                             <Tab.Pane eventKey="sg">
                                 <NewsCard
                                     title="Singapore Tech"
-                                    news={data[1].sgTech}
+                                    news={technologies[1].sgTech}
                                 />
                             </Tab.Pane>
                             <Tab.Pane eventKey="us">
                                 <NewsCard
-                                    news={data[2].usTech}
+                                    news={technologies[2].usTech}
                                     title="United States Tech"
                                 />
                             </Tab.Pane>
@@ -66,48 +60,6 @@ const Page = ({ data, error }) => {
             </Tab.Container>
         </Layout>
     )
-}
-
-Page.getInitialProps = async ({ store }) => {
-    const { technologies } = store.getState();
-    if (technologies.length) {
-        return { data: technologies }
-    } else {
-        try {
-            const businessPromises = {
-                idnBusiness: await client.get(query('id', 'business')),
-                sgBusiness: await client.get(query('sg', 'business')),
-                usBusiness: await client.get(query('us', 'business')),
-            }
-            const { idnBusiness, sgBusiness, usBusiness } = businessPromises
-            const businessPayload = [
-                { idnBusiness: idnBusiness.data.articles.slice(0, 8) },
-                { sgBusiness: sgBusiness.data.articles.slice(0, 8) },
-                { usBusiness: usBusiness.data.articles.slice(0, 8) },
-            ]
-            store.dispatch({ type: 'SET_BUSINESS', payload: businessPayload })
-
-            const techPromises = {
-                idnTech: await client.get(query('id', 'technology')),
-                sgTech: await client.get(query('sg', 'technology')),
-                usTech: await client.get(query('us', 'technology')),
-            }
-            const { idnTech, sgTech, usTech } = techPromises
-            const techPayload = [
-                { idnTech: idnTech.data.articles.slice(0, 8) },
-                { sgTech: sgTech.data.articles.slice(0, 8) },
-                { usTech: usTech.data.articles.slice(0, 8) },
-            ]
-            store.dispatch({ type: 'SET_TECHNOLOGIES', payload: techPayload })
-            return {
-                data: payload
-            }
-        } catch (error) {
-            return {
-                error: error.message
-            }
-        }
-    }
 }
 
 export default Page

@@ -7,8 +7,20 @@ import {
     Tab
 } from 'react-bootstrap'
 import NewsCard from '../comps/newsCard'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 const Page = ({ data, error }) => {
+    const { business } = useSelector(state => state)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (business.length === 0) {
+            dispatch({ type: 'SET_BUSINESS', payload: data.business })
+            dispatch({ type: 'SET_TECHNOLOGIES', payload: data.tech })
+        }
+    }, [])
+
     if (error) {
         return (
             <Layout>
@@ -46,20 +58,20 @@ const Page = ({ data, error }) => {
                                 <NewsCard
                                     id={'idnBusiness'}
                                     title="Indonesia Business"
-                                    news={data[0].idnBusiness}
+                                    news={business.length > 0 ? business[0].idnBusiness : data.business[0].idnBusiness}
                                 />
                             </Tab.Pane>
                             <Tab.Pane eventKey="sg">
                                 <NewsCard
                                     title="Singapore Business"
-                                    news={data[1].sgBusiness}
+                                    news={business.length > 0 ? business[1].sgBusiness : data.business[1].sgBusiness}
                                     id={'sgBusiness'}
                                 />
                             </Tab.Pane>
                             <Tab.Pane eventKey="us">
                                 <NewsCard
                                     id={'usBusiness'}
-                                    news={data[2].usBusiness}
+                                    news={business.length > 0 ? business[2].usBusiness : data.business[2].usBusiness}
                                     title="United States Business"
                                 />
                             </Tab.Pane>
@@ -72,46 +84,48 @@ const Page = ({ data, error }) => {
 }
 
 Page.getInitialProps = async ({ store }) => {
-    const { business } = store.getState();
-    if (business.length) {
-        return { data: business }
-    } else {
-        try {
-            const businessPromises = {
-                idnBusiness: await client.get(query('id', 'business')),
-                sgBusiness: await client.get(query('sg', 'business')),
-                usBusiness: await client.get(query('us', 'business')),
-            }
-            const { idnBusiness, sgBusiness, usBusiness } = businessPromises
-            const businessPayload = [
-                { idnBusiness: idnBusiness.data.articles.slice(0, 8) },
-                { sgBusiness: sgBusiness.data.articles.slice(0, 8) },
-                { usBusiness: usBusiness.data.articles.slice(0, 8) },
-            ]
-            store.dispatch({ type: 'SET_BUSINESS', payload: businessPayload })
+    const { business } = store.getState()
+    if (business.length > 0) return {}
 
-            const techPromises = {
-                idnTech: await client.get(query('id', 'technology')),
-                sgTech: await client.get(query('sg', 'technology')),
-                usTech: await client.get(query('us', 'technology')),
-            }
-            const { idnTech, sgTech, usTech } = techPromises
-            const techPayload = [
-                { idnTech: idnTech.data.articles.slice(0, 8) },
-                { sgTech: sgTech.data.articles.slice(0, 8) },
-                { usTech: usTech.data.articles.slice(0, 8) },
-            ]
-            store.dispatch({ type: 'SET_TECHNOLOGIES', payload: techPayload })
-            return {
-                data: payload
-            }
-        } catch (error) {
-            return {
-                error: error.message
+    try {
+        const promises = {
+            idnBusiness: await client.get(query('id', 'business')),
+            sgBusiness: await client.get(query('sg', 'business')),
+            usBusiness: await client.get(query('us', 'business')),
+            idnTech: await client.get(query('id', 'technology')),
+            sgTech: await client.get(query('sg', 'technology')),
+            usTech: await client.get(query('us', 'technology')),
+        }
+        const {
+            idnBusiness,
+            sgBusiness,
+            usBusiness,
+            idnTech,
+            sgTech,
+            usTech
+        } = promises
+        const business = [
+            { idnBusiness: idnBusiness.data.articles.slice(0, 8) },
+            { sgBusiness: sgBusiness.data.articles.slice(0, 8) },
+            { usBusiness: usBusiness.data.articles.slice(0, 8) },
+        ]
+
+        const tech = [
+            { idnTech: idnTech.data.articles.slice(0, 8) },
+            { sgTech: sgTech.data.articles.slice(0, 8) },
+            { usTech: usTech.data.articles.slice(0, 8) },
+        ]
+        return {
+            data: {
+                business,
+                tech
             }
         }
+    } catch (error) {
+        return {
+            error: error.message
+        }
     }
-
 }
 
 export default Page
