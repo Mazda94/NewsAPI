@@ -69,31 +69,31 @@ const Page = ({ data, error }) => {
 }
 
 Page.getInitialProps = async ({ store }) => {
-    const { technologies } = store.getState();
-    if (technologies.length) {
-        return { data: technologies }
-    } else {
-        try {
-            const promises = {
-                idnTech: await client.get(query('id', 'technology')),
-                sgTech: await client.get(query('sg', 'technology')),
-                usTech: await client.get(query('us', 'technology')),
-            }
-            const { idnTech, sgTech, usTech } = promises
-            const payload = [
-                { idnTech: idnTech.data.articles.slice(0, 8) },
-                { sgTech: sgTech.data.articles.slice(0, 8) },
-                { usTech: usTech.data.articles.slice(0, 8) },
-            ]
-            store.dispatch({ type: 'SET_TECHNOLOGIES', payload })
-            return {
-                data: payload
-            }
-        } catch (error) {
-            return {
-                error: error.message
-            }
+    // const { technologies } = store.getState();
+    // if (technologies.length) {
+    //     return { data: technologies }
+    // } else {
+    try {
+        const promises = {
+            idnTech: await client.get(query('id', 'technology')),
+            sgTech: await client.get(query('sg', 'technology')),
+            usTech: await client.get(query('us', 'technology')),
         }
+        const { idnTech, sgTech, usTech } = promises
+        const payload = [
+            { idnTech: idnTech.data.articles.slice(0, 8) },
+            { sgTech: sgTech.data.articles.slice(0, 8) },
+            { usTech: usTech.data.articles.slice(0, 8) },
+        ]
+        store.dispatch({ type: 'SET_TECHNOLOGIES', payload })
+        return {
+            data: payload
+        }
+    } catch (error) {
+        return {
+            error: error.message
+        }
+        // }
     }
 
 }
