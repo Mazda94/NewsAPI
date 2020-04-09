@@ -2372,7 +2372,28 @@ Page.getInitialProps = async ({
     };
   } else {
     try {
-      const promises = {
+      const businessPromises = {
+        idnBusiness: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('id', 'business')),
+        sgBusiness: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('sg', 'business')),
+        usBusiness: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('us', 'business'))
+      };
+      const {
+        idnBusiness,
+        sgBusiness,
+        usBusiness
+      } = businessPromises;
+      const businessPayload = [{
+        idnBusiness: idnBusiness.data.articles.slice(0, 8)
+      }, {
+        sgBusiness: sgBusiness.data.articles.slice(0, 8)
+      }, {
+        usBusiness: usBusiness.data.articles.slice(0, 8)
+      }];
+      store.dispatch({
+        type: 'SET_BUSINESS',
+        payload: businessPayload
+      });
+      const techPromises = {
         idnTech: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('id', 'technology')),
         sgTech: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('sg', 'technology')),
         usTech: await _helper__WEBPACK_IMPORTED_MODULE_1__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__["query"])('us', 'technology'))
@@ -2381,8 +2402,8 @@ Page.getInitialProps = async ({
         idnTech,
         sgTech,
         usTech
-      } = promises;
-      const payload = [{
+      } = techPromises;
+      const techPayload = [{
         idnTech: idnTech.data.articles.slice(0, 8)
       }, {
         sgTech: sgTech.data.articles.slice(0, 8)
@@ -2391,7 +2412,7 @@ Page.getInitialProps = async ({
       }];
       store.dispatch({
         type: 'SET_TECHNOLOGIES',
-        payload
+        payload: techPayload
       });
       return {
         data: payload

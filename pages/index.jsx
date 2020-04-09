@@ -72,32 +72,45 @@ const Page = ({ data, error }) => {
 }
 
 Page.getInitialProps = async ({ store }) => {
-    // const { business } = store.getState();
-    // if (business.length) {
-    //     return { data: business }
-    // } else {
-    try {
-        const promises = {
-            idnBusiness: await client.get(query('id', 'business')),
-            sgBusiness: await client.get(query('sg', 'business')),
-            usBusiness: await client.get(query('us', 'business')),
-        }
-        const { idnBusiness, sgBusiness, usBusiness } = promises
-        const payload = [
-            { idnBusiness: idnBusiness.data.articles.slice(0, 8) },
-            { sgBusiness: sgBusiness.data.articles.slice(0, 8) },
-            { usBusiness: usBusiness.data.articles.slice(0, 8) },
-        ]
-        store.dispatch({ type: 'SET_BUSINESS', payload })
-        return {
-            data: payload
-        }
-    } catch (error) {
-        return {
-            error: error.message
+    const { business } = store.getState();
+    if (business.length) {
+        return { data: business }
+    } else {
+        try {
+            const businessPromises = {
+                idnBusiness: await client.get(query('id', 'business')),
+                sgBusiness: await client.get(query('sg', 'business')),
+                usBusiness: await client.get(query('us', 'business')),
+            }
+            const { idnBusiness, sgBusiness, usBusiness } = businessPromises
+            const businessPayload = [
+                { idnBusiness: idnBusiness.data.articles.slice(0, 8) },
+                { sgBusiness: sgBusiness.data.articles.slice(0, 8) },
+                { usBusiness: usBusiness.data.articles.slice(0, 8) },
+            ]
+            store.dispatch({ type: 'SET_BUSINESS', payload: businessPayload })
+
+            const techPromises = {
+                idnTech: await client.get(query('id', 'technology')),
+                sgTech: await client.get(query('sg', 'technology')),
+                usTech: await client.get(query('us', 'technology')),
+            }
+            const { idnTech, sgTech, usTech } = techPromises
+            const techPayload = [
+                { idnTech: idnTech.data.articles.slice(0, 8) },
+                { sgTech: sgTech.data.articles.slice(0, 8) },
+                { usTech: usTech.data.articles.slice(0, 8) },
+            ]
+            store.dispatch({ type: 'SET_TECHNOLOGIES', payload: techPayload })
+            return {
+                data: payload
+            }
+        } catch (error) {
+            return {
+                error: error.message
+            }
         }
     }
-    // }
 
 }
 

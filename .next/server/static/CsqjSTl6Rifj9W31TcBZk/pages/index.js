@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -169,10 +169,10 @@ const client = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("r3V1");
+module.exports = __webpack_require__("cMU6");
 
 
 /***/ }),
@@ -342,6 +342,144 @@ function _typeof(obj) {
 }
 
 module.exports = _typeof;
+
+/***/ }),
+
+/***/ "cMU6":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("0vQK");
+/* harmony import */ var _comps_layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("lbm3");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("IZS3");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _comps_newsCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("mHu+");
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+
+const Page = ({
+  data,
+  error
+}) => {
+  if (error) {
+    return __jsx(_comps_layout__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"], null, __jsx("p", null, "Error while load data"));
+  }
+
+  return __jsx(_comps_layout__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"], null, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Container, {
+    id: "left-tabs-example",
+    defaultActiveKey: "idn"
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Row"], null, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Col"], {
+    xs: 12,
+    md: 4,
+    xl: 3
+  }, __jsx("h3", null, "Country"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"], {
+    variant: "pills",
+    className: "flex-column"
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Item, null, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Link, {
+    eventKey: "idn"
+  }, "Indonesia")), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Item, null, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Link, {
+    eventKey: "sg"
+  }, "Singapore")), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Item, null, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Link, {
+    eventKey: "us"
+  }, "United States")))), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Col"], {
+    xs: 12,
+    md: 8,
+    xl: 9
+  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Content, null, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Pane, {
+    eventKey: "idn"
+  }, __jsx(_comps_newsCard__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
+    id: 'idnBusiness',
+    title: "Indonesia Business",
+    news: data[0].idnBusiness
+  })), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Pane, {
+    eventKey: "sg"
+  }, __jsx(_comps_newsCard__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
+    title: "Singapore Business",
+    news: data[1].sgBusiness,
+    id: 'sgBusiness'
+  })), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Pane, {
+    eventKey: "us"
+  }, __jsx(_comps_newsCard__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
+    id: 'usBusiness',
+    news: data[2].usBusiness,
+    title: "United States Business"
+  })))))));
+};
+
+Page.getInitialProps = async ({
+  store
+}) => {
+  const {
+    business
+  } = store.getState();
+
+  if (business.length) {
+    return {
+      data: business
+    };
+  } else {
+    try {
+      const businessPromises = {
+        idnBusiness: await _helper__WEBPACK_IMPORTED_MODULE_1__[/* client */ "a"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__[/* query */ "b"])('id', 'business')),
+        sgBusiness: await _helper__WEBPACK_IMPORTED_MODULE_1__[/* client */ "a"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__[/* query */ "b"])('sg', 'business')),
+        usBusiness: await _helper__WEBPACK_IMPORTED_MODULE_1__[/* client */ "a"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__[/* query */ "b"])('us', 'business'))
+      };
+      const {
+        idnBusiness,
+        sgBusiness,
+        usBusiness
+      } = businessPromises;
+      const businessPayload = [{
+        idnBusiness: idnBusiness.data.articles.slice(0, 8)
+      }, {
+        sgBusiness: sgBusiness.data.articles.slice(0, 8)
+      }, {
+        usBusiness: usBusiness.data.articles.slice(0, 8)
+      }];
+      store.dispatch({
+        type: 'SET_BUSINESS',
+        payload: businessPayload
+      });
+      const techPromises = {
+        idnTech: await _helper__WEBPACK_IMPORTED_MODULE_1__[/* client */ "a"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__[/* query */ "b"])('id', 'technology')),
+        sgTech: await _helper__WEBPACK_IMPORTED_MODULE_1__[/* client */ "a"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__[/* query */ "b"])('sg', 'technology')),
+        usTech: await _helper__WEBPACK_IMPORTED_MODULE_1__[/* client */ "a"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__[/* query */ "b"])('us', 'technology'))
+      };
+      const {
+        idnTech,
+        sgTech,
+        usTech
+      } = techPromises;
+      const techPayload = [{
+        idnTech: idnTech.data.articles.slice(0, 8)
+      }, {
+        sgTech: sgTech.data.articles.slice(0, 8)
+      }, {
+        usTech: usTech.data.articles.slice(0, 8)
+      }];
+      store.dispatch({
+        type: 'SET_TECHNOLOGIES',
+        payload: techPayload
+      });
+      return {
+        data: payload
+      };
+    } catch (error) {
+      return {
+        error: error.message
+      };
+    }
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Page);
 
 /***/ }),
 
@@ -1844,120 +1982,6 @@ Object.defineProperty(exports, "__esModule", {
 const React = __importStar(__webpack_require__("cDcd"));
 
 exports.RouterContext = React.createContext(null);
-
-/***/ }),
-
-/***/ "r3V1":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("0vQK");
-/* harmony import */ var _comps_layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("lbm3");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("IZS3");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _comps_newsCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("mHu+");
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-
-
-
-
-
-const Page = ({
-  data,
-  error
-}) => {
-  if (error) {
-    return __jsx(_comps_layout__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"], null, __jsx("p", null, "Error while load data"));
-  }
-
-  return __jsx(_comps_layout__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"], null, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Container, {
-    id: "left-tabs-example",
-    defaultActiveKey: "idn"
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Row"], null, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Col"], {
-    xs: 12,
-    md: 4,
-    xl: 3
-  }, __jsx("h3", null, "Country"), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"], {
-    variant: "pills",
-    className: "flex-column"
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Item, null, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Link, {
-    eventKey: "idn"
-  }, "Indonesia")), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Item, null, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Link, {
-    eventKey: "sg"
-  }, "Singapore")), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Item, null, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Nav"].Link, {
-    eventKey: "us"
-  }, "United States")))), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Col"], {
-    xs: 12,
-    md: 8,
-    xl: 9
-  }, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Content, null, __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Pane, {
-    eventKey: "idn"
-  }, __jsx(_comps_newsCard__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
-    title: "Indonesia Tech",
-    news: data[0].idnTech
-  })), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Pane, {
-    eventKey: "sg"
-  }, __jsx(_comps_newsCard__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
-    title: "Singapore Tech",
-    news: data[1].sgTech
-  })), __jsx(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Tab"].Pane, {
-    eventKey: "us"
-  }, __jsx(_comps_newsCard__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
-    news: data[2].usTech,
-    title: "United States Tech"
-  })))))));
-};
-
-Page.getInitialProps = async ({
-  store
-}) => {
-  const {
-    technologies
-  } = store.getState();
-
-  if (technologies.length) {
-    return {
-      data: technologies
-    };
-  } else {
-    try {
-      const promises = {
-        idnTech: await _helper__WEBPACK_IMPORTED_MODULE_1__[/* client */ "a"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__[/* query */ "b"])('id', 'technology')),
-        sgTech: await _helper__WEBPACK_IMPORTED_MODULE_1__[/* client */ "a"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__[/* query */ "b"])('sg', 'technology')),
-        usTech: await _helper__WEBPACK_IMPORTED_MODULE_1__[/* client */ "a"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_1__[/* query */ "b"])('us', 'technology'))
-      };
-      const {
-        idnTech,
-        sgTech,
-        usTech
-      } = promises;
-      const payload = [{
-        idnTech: idnTech.data.articles.slice(0, 8)
-      }, {
-        sgTech: sgTech.data.articles.slice(0, 8)
-      }, {
-        usTech: usTech.data.articles.slice(0, 8)
-      }];
-      store.dispatch({
-        type: 'SET_TECHNOLOGIES',
-        payload
-      });
-      return {
-        data: payload
-      };
-    } catch (error) {
-      return {
-        error: error.message
-      };
-    }
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Page);
 
 /***/ }),
 

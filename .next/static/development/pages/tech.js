@@ -39307,7 +39307,7 @@ var Page = function Page(_ref) {
 };
 
 Page.getInitialProps = function _callee(_ref2) {
-  var store, _store$getState, technologies, promises, idnTech, sgTech, usTech, payload;
+  var store, _store$getState, technologies, businessPromises, idnBusiness, sgBusiness, usBusiness, businessPayload, techPromises, idnTech, sgTech, usTech, techPayload;
 
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
     while (1) {
@@ -39328,27 +39328,59 @@ Page.getInitialProps = function _callee(_ref2) {
         case 6:
           _context.prev = 6;
           _context.next = 9;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_helper__WEBPACK_IMPORTED_MODULE_2__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_2__["query"])('id', 'technology')));
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_helper__WEBPACK_IMPORTED_MODULE_2__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_2__["query"])('id', 'business')));
 
         case 9:
           _context.t0 = _context.sent;
           _context.next = 12;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_helper__WEBPACK_IMPORTED_MODULE_2__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_2__["query"])('sg', 'technology')));
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_helper__WEBPACK_IMPORTED_MODULE_2__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_2__["query"])('sg', 'business')));
 
         case 12:
           _context.t1 = _context.sent;
           _context.next = 15;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_helper__WEBPACK_IMPORTED_MODULE_2__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_2__["query"])('us', 'technology')));
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_helper__WEBPACK_IMPORTED_MODULE_2__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_2__["query"])('us', 'business')));
 
         case 15:
           _context.t2 = _context.sent;
-          promises = {
-            idnTech: _context.t0,
-            sgTech: _context.t1,
-            usTech: _context.t2
+          businessPromises = {
+            idnBusiness: _context.t0,
+            sgBusiness: _context.t1,
+            usBusiness: _context.t2
           };
-          idnTech = promises.idnTech, sgTech = promises.sgTech, usTech = promises.usTech;
-          payload = [{
+          idnBusiness = businessPromises.idnBusiness, sgBusiness = businessPromises.sgBusiness, usBusiness = businessPromises.usBusiness;
+          businessPayload = [{
+            idnBusiness: idnBusiness.data.articles.slice(0, 8)
+          }, {
+            sgBusiness: sgBusiness.data.articles.slice(0, 8)
+          }, {
+            usBusiness: usBusiness.data.articles.slice(0, 8)
+          }];
+          store.dispatch({
+            type: 'SET_BUSINESS',
+            payload: businessPayload
+          });
+          _context.next = 22;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_helper__WEBPACK_IMPORTED_MODULE_2__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_2__["query"])('id', 'technology')));
+
+        case 22:
+          _context.t3 = _context.sent;
+          _context.next = 25;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_helper__WEBPACK_IMPORTED_MODULE_2__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_2__["query"])('sg', 'technology')));
+
+        case 25:
+          _context.t4 = _context.sent;
+          _context.next = 28;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_helper__WEBPACK_IMPORTED_MODULE_2__["client"].get(Object(_helper__WEBPACK_IMPORTED_MODULE_2__["query"])('us', 'technology')));
+
+        case 28:
+          _context.t5 = _context.sent;
+          techPromises = {
+            idnTech: _context.t3,
+            sgTech: _context.t4,
+            usTech: _context.t5
+          };
+          idnTech = techPromises.idnTech, sgTech = techPromises.sgTech, usTech = techPromises.usTech;
+          techPayload = [{
             idnTech: idnTech.data.articles.slice(0, 8)
           }, {
             sgTech: sgTech.data.articles.slice(0, 8)
@@ -39357,25 +39389,25 @@ Page.getInitialProps = function _callee(_ref2) {
           }];
           store.dispatch({
             type: 'SET_TECHNOLOGIES',
-            payload: payload
+            payload: techPayload
           });
           return _context.abrupt("return", {
             data: payload
           });
 
-        case 23:
-          _context.prev = 23;
-          _context.t3 = _context["catch"](6);
+        case 36:
+          _context.prev = 36;
+          _context.t6 = _context["catch"](6);
           return _context.abrupt("return", {
-            error: _context.t3.message
+            error: _context.t6.message
           });
 
-        case 26:
+        case 39:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[6, 23]], Promise);
+  }, null, null, [[6, 36]], Promise);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Page);
